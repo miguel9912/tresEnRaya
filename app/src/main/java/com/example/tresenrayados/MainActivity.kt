@@ -3,6 +3,7 @@ package com.example.tresenrayados
 import android.os.Bundle
 import android.widget.EditText
 import android.widget.ImageView
+import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 
 class MainActivity : AppCompatActivity() {
@@ -18,7 +19,7 @@ class MainActivity : AppCompatActivity() {
         for (i in 0 until 3) {
             for (j in 0 until 3) {
                 val txtSalida = findViewById<EditText>(R.id.txtSalida)
-                if (!comprobar(tablero)) {
+
 
                     val casilla = findViewById<ImageView>(
                         resources.getIdentifier(
@@ -28,13 +29,9 @@ class MainActivity : AppCompatActivity() {
                         )
 
                     )
-                    casilla.setOnClickListener { onCasillaClick(casilla, i, j, tablero) }
+                    casilla.setOnClickListener { onCasillaClick(casilla, i, j, tablero)
+                        comprobar(tablero)}
 
-                }
-                else{
-                    txtSalida.setText("Alguien ha ganado")
-                    Thread.sleep(2000)
-                }
 
             }
 
@@ -65,6 +62,7 @@ class MainActivity : AppCompatActivity() {
             }
             if(cuentaFilas == 6 || cuentaFilas == 15 || cuentaColumnas == 6 || cuentaColumnas == 15){
                 salida= true
+                Toast.makeText(this, "Tomaa", Toast.LENGTH_SHORT).show()
             }
             cuentaColumnas = 0
             cuentaFilas = 0
